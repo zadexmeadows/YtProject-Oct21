@@ -1,0 +1,11 @@
+204.216.107.165.sslip.io {
+  encode zstd gzip
+
+  handle_path /api/* {
+    reverse_proxy api:4000
+  }
+
+  handle {
+    reverse_proxy web:3000
+  }
+}

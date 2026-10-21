@@ -1,0 +1,32 @@
+node_modules/
+.next/
+dist/
+coverage/
+.env
+.env.local
+*.tsbuildinfo
+*.log
+storage/*.log
+storage/debug/
+storage/postgres-data/
+storage/redis-data/
+storage/exports/*
+!storage/exports/.gitkeep
+backups/
+recovery-kit/
+playwright-report/
+test-results/
+.vercel/
+.env*.local
+
+# Local mobile wrapper and generated Android build artifacts are not part of this repository.
+apps/android/
+tmp/
+
+# Deployment secrets and signing credentials must never be committed.
+secrets/
+*.key
+*.pem
+*.jks
+*.keystore
+*-firebase-adminsdk-*.json

@@ -1,0 +1,35 @@
+{
+  "name": "@ytbot/worker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc --noEmit -p tsconfig.json",
+    "start": "tsx src/index.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "postinstall": "playwright install chromium"
+  },
+  "dependencies": {
+    "@ytbot/db": "1.0.0",
+    "@ytbot/shared": "1.0.0",
+    "bullmq": "^5.34.3",
+    "csv-stringify": "^6.5.2",
+    "dotenv": "^16.4.7",
+    "exceljs": "^4.4.0",
+    "firebase-admin": "^13.5.0",
+    "ioredis": "^5.4.2",
+    "pdfkit": "^0.15.2",
+    "pino": "^9.5.0",
+    "playwright": "^1.49.1",
+    "sharp": "^0.34.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/pdfkit": "^0.13.8",
+    "pino-pretty": "^13.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,80 @@
+services:
+  - type: web
+    name: ytbot-api-worker
+    runtime: docker
+    plan: starter
+    region: oregon
+    dockerContext: .
+    dockerfilePath: ./apps/render/Dockerfile
+    healthCheckPath: /health
+    disk:
+      name: ytbot-exports
+      mountPath: /app/storage
+      sizeGB: 10
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Asia/Karachi
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ytbot-postgres
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: ytbot-redis
+          property: connectionString
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: WEB_ORIGIN
+        value: https://ytbot-lilac.vercel.app
+      - key: EXPORT_DIR
+        value: /app/storage/exports
+      - key: WORKER_ID
+        value: render-worker-1
+      - key: HEADLESS_BROWSER
+        value: "true"
+      - key: DEFAULT_CAPTURE_SPEED_MS
+        value: "1500"
+      - key: MAX_CONCURRENT_STREAMS
+        value: "8"
+      - key: FIREBASE_API_KEY
+        sync: false
+      - key: FIREBASE_AUTH_DOMAIN
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: FIREBASE_APP_ID
+        sync: false
+      - key: FIREBASE_VAPID_KEY
+        sync: false
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        sync: false
+      - key: SEED_ADMIN_EMAIL
+        sync: false
+      - key: SEED_ADMIN_PASSWORD
+        sync: false
+      - key: SEED_ADMIN_NAME
+        value: Super Admin
+
+  - type: keyvalue
+    name: ytbot-redis
+    plan: starter
+    region: oregon
+    ipAllowList: []
+    maxmemoryPolicy: noeviction
+    persistenceMode: journal-snapshot
+
+databases:
+  - name: ytbot-postgres
+    plan: basic-256mb
+    region: oregon
+    databaseName: ytbot
+    user: ytbot

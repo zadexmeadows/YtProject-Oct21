@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.dark body {
+  background: #0b1220;
+  color: #f9fafb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 8px;
+}
+
+/* Android-wrapper-only layout adjustments. Normal browsers never receive this class. */
+html.android-app {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y pinch-zoom;
+}
+
+html.android-app body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  touch-action: pan-y pinch-zoom;
+}
+
+html.android-app .app-shell,
+html.android-app .app-shell-content,
+html.android-app .app-main,
+html.android-app .app-main > *,
+html.android-app .app-panel,
+html.android-app .app-page-header,
+html.android-app .app-live-chat-page,
+html.android-app .app-live-chat-controls {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+html.android-app .app-main :where(.grid, .flex) > *,
+html.android-app .app-panel-header > *,
+html.android-app .app-page-header > *,
+html.android-app .app-header > * {
+  min-width: 0;
+}
+
+html.android-app .app-main :where(img, video, canvas, svg, iframe) {
+  max-width: 100%;
+}
+
+html.android-app .app-main :where(input, select, textarea, button) {
+  max-width: 100%;
+}
+
+html.android-app .app-main :where(p, pre, code, td, th, a),
+html.android-app .app-panel-header,
+html.android-app .app-page-header {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+html.android-app button,
+html.android-app a,
+html.android-app input,
+html.android-app select,
+html.android-app textarea {
+  touch-action: manipulation;
+}
+
+html.android-app .app-main button,
+html.android-app .app-header button,
+html.android-app .app-sidebar a,
+html.android-app .app-sidebar button {
+  min-height: 44px;
+}
+
+html.android-app input,
+html.android-app select,
+html.android-app textarea {
+  font-size: max(16px, 1em);
+}
+
+html.android-app .overflow-x-auto {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+}
+
+html.android-app .app-chat-feed-body {
+  max-width: 100%;
+  overflow-x: clip;
+  overscroll-behavior-y: auto;
+  touch-action: pan-y;
+}
+
+html.android-app .app-sidebar[data-sidebar-open='false'] {
+  display: none;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+html.android-app .app-sidebar[data-sidebar-open='true'] {
+  display: block;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+html.android-app .app-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: block;
+  border: 0;
+  background: rgb(15 23 42 / 45%);
+  touch-action: manipulation;
+}
+
+html.android-app .app-panel-header {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+html.android-app .app-panel-header > :last-child {
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+html.android-app [role='dialog'] {
+  max-width: calc(100vw - 1.5rem);
+  max-height: calc(100dvh - 1.5rem);
+  overflow-y: auto;
+}
+
+@media (max-width: 640px) {
+  html.android-app .app-main {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-bottom: 1rem;
+  }
+
+  html.android-app aside {
+    max-width: min(18rem, calc(100vw - 2rem));
+  }
+
+  html.android-app table {
+    font-size: 0.8125rem;
+  }
+
+  html.android-app .app-live-chat-feed {
+    height: min(62dvh, 36rem) !important;
+    min-height: 22rem !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html.android-app .app-users-table-scroll {
+    overflow: visible;
+    border: 0;
+  }
+
+  html.android-app .app-users-table {
+    width: 100%;
+    min-width: 0;
+  }
+
+  html.android-app .app-users-table-header {
+    display: none;
+  }
+
+  html.android-app .app-users-table-row {
+    display: grid;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem;
+    border: 1px solid rgb(226 232 240);
+    border-radius: 0.75rem;
+  }
+
+  html.android-app.dark .app-users-table-row {
+    border-color: rgb(30 41 59);
+  }
+
+  html.android-app .app-users-session-field {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  html.android-app .app-users-session-field::before {
+    content: attr(data-label);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: rgb(100 116 139);
+    text-transform: uppercase;
+  }
+
+  html.android-app .app-users-session-field > div {
+    overflow: visible;
+    text-align: right;
+    text-overflow: clip;
+    white-space: normal;
+  }
+
+  html.android-app .app-users-table-actions {
+    justify-content: flex-start;
+    padding-top: 0.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  html.android-app .app-sidebar[data-sidebar-open='false'] {
+    display: block;
+    pointer-events: auto;
+    visibility: visible;
+  }
+}
